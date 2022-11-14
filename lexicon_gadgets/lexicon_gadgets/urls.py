@@ -21,5 +21,5 @@ from lexiconapp import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path(views.user_login, name='user_login'),
+    path('login',views.userlogin, name='userlogin'),
 ]

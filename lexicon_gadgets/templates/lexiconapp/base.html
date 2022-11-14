@@ -17,7 +17,7 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-              <a class="nav-link active" aria-current="page" href="{% url 'index' %}">index</a>
+              {% comment %} <a class="nav-link active" aria-current="page" href="{% url 'index' %}">index</a> {% endcomment %}
               <a class="nav-link" href="{% url 'admin:index' %}">Admin</a>
               
               
@@ -25,7 +25,7 @@
               {% comment %} <a class="nav-link" href="{% url 'lexiconapp:userlogout' %}">logout</a> {% endcomment %}
 
               {% else %}
-              <a class="nav-link" href="{% url 'lexiconapp:userlogin' %}">login</a>
+              {% comment %} <a class="nav-link" href="{% url 'lexiconapp:userlogin' %}">login</a> {% endcomment %}
               {% comment %} <a class="nav-link" href="{% url 'lexiconapp:register' %}">registraion</a> {% endcomment %}
               {% endif %}
               {% comment %} <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a> {% endcomment %}

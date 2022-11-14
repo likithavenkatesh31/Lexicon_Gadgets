@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from . import forms
+from lexiconapp import forms
 
 from django.http import HttpResponse,HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
