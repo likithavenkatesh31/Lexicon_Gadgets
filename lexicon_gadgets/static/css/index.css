@@ -1,7 +1,13 @@
 body {
-  background-color: rgb(95, 159, 60);
+  background-color: rgba(182, 58, 226, 0.262);
 }
 
-h2 {
-  color: rgb(5, 71, 106);
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: red;
+  color: white;
+  text-align: center;
 }
