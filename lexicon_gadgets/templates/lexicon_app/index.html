@@ -27,9 +27,10 @@
     <link rel="stylesheet" href="{% static 'css/index.css' %}" />
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    {% comment %} <nav class="navbar navbar-dark bg-dark"> {% endcomment %}
+    <nav class="navbar navbar-expand-lg navbar-light bg-secondary " >
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">Sridhar</a>
+        <a class="navbar-brand" href="#">LEXICON GADGETS</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -47,18 +48,21 @@
               <a class="nav-link active" aria-current="page" href="#">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
+              <a class="nav-link" href="#">Products</a>
             </li>
-
             <li class="nav-item">
-              <a
-                class="nav-link disabled"
-                href="#"
-                tabindex="-1"
-                aria-disabled="true"
-                >Disabled</a
-              >
+              <a class="nav-link" href="#">Contact</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Orders</a>
+            </li>
+            <a
+              class="btn btn-outline-light btn-floating m-1"
+              href="#!"
+              role="button"
+            >
+              <i class="bi bi-cart-check"></i
+            ></a>
           </ul>
           <form class="d-flex">
             <input
@@ -86,7 +90,7 @@
             class="btn btn-outline-light btn-floating m-1"
             href="#!"
             role="button"
-            ><i class="fab fa-facebook-f"></i
+            ><i class="bi bi-facebook"></i
           ></a>
 
           <!-- Twitter -->
@@ -94,7 +98,7 @@
             class="btn btn-outline-light btn-floating m-1"
             href="#!"
             role="button"
-            ><i class="fab fa-twitter"></i
+            ><i class="bi bi-twitter"></i
           ></a>
 
           <!-- Google -->
@@ -102,7 +106,7 @@
             class="btn btn-outline-light btn-floating m-1"
             href="#!"
             role="button"
-            ><i class="fab fa-google"></i
+            ><i class="bi bi-google"></i
           ></a>
 
           <!-- Instagram -->
@@ -110,7 +114,8 @@
             class="btn btn-outline-light btn-floating m-1"
             href="#!"
             role="button"
-            ><i class="fab fa-instagram"></i
+          >
+            <i class="bi bi-instagram"></i
           ></a>
 
           <!-- Linkedin -->
@@ -118,15 +123,7 @@
             class="btn btn-outline-light btn-floating m-1"
             href="#!"
             role="button"
-            ><i class="fab fa-linkedin-in"></i
-          ></a>
-
-          <!-- Github -->
-          <a
-            class="btn btn-outline-light btn-floating m-1"
-            href="#!"
-            role="button"
-            ><i class="fab fa-github"></i
+            ><i class="bi bi-linkedin"></i
           ></a>
         </section>
         <!-- Section: Social media -->
@@ -200,11 +197,20 @@
                 <li>
                   <a href="#!" class="text-white">Link 2</a>
                 </li>
+              </ul>
+            </div>
+            <!--Grid column-->
+
+            <!--Grid column-->
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+              <h5 class="text-uppercase">Links</h5>
+
+              <ul class="list-unstyled mb-0">
                 <li>
-                  <a href="#!" class="text-white">Link 3</a>
+                  <a href="#!" class="text-white">Link 1</a>
                 </li>
                 <li>
-                  <a href="#!" class="text-white">Link 4</a>
+                  <a href="#!" class="text-white">Link 2</a>
                 </li>
               </ul>
             </div>
@@ -221,12 +227,6 @@
                 <li>
                   <a href="#!" class="text-white">Link 2</a>
                 </li>
-                <li>
-                  <a href="#!" class="text-white">Link 3</a>
-                </li>
-                <li>
-                  <a href="#!" class="text-white">Link 4</a>
-                </li>
               </ul>
             </div>
             <!--Grid column-->
@@ -241,33 +241,6 @@
                 </li>
                 <li>
                   <a href="#!" class="text-white">Link 2</a>
-                </li>
-                <li>
-                  <a href="#!" class="text-white">Link 3</a>
-                </li>
-                <li>
-                  <a href="#!" class="text-white">Link 4</a>
-                </li>
-              </ul>
-            </div>
-            <!--Grid column-->
-
-            <!--Grid column-->
-            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-              <h5 class="text-uppercase">Links</h5>
-
-              <ul class="list-unstyled mb-0">
-                <li>
-                  <a href="#!" class="text-white">Link 1</a>
-                </li>
-                <li>
-                  <a href="#!" class="text-white">Link 2</a>
-                </li>
-                <li>
-                  <a href="#!" class="text-white">Link 3</a>
-                </li>
-                <li>
-                  <a href="#!" class="text-white">Link 4</a>
                 </li>
               </ul>
             </div>
