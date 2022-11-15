@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from lexiconapp.models import UserForm
+from lexiconapp.models import UserForm,Product
 from lexiconapp import forms
 # Create your views here.
 
@@ -55,7 +55,6 @@ def userlogin(request):
             return render(request, 'lexiconapp/login.html', {'user': user})
         else:
             print("error")
-
     else:
         login_form = forms.UserLogin()
 
