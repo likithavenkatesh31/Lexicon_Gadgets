@@ -35,3 +35,9 @@ def orderconf(request):
     # need to take orderno from order model
     orderno = '1000'
     return HttpResponse("Your order is placed. order no {}".format(orderno))
+
+# @login_required
+def userlogout(request):
+    logout(request)
+    messages.success(request,'logged out success')
+    return redirect('userlogin')

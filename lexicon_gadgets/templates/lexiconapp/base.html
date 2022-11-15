@@ -22,11 +22,11 @@
               
               
               {% if user.is_authenticated %}
-              {% comment %} <a class="nav-link" href="{% url 'lexiconapp:userlogout' %}">logout</a> {% endcomment %}
+              <a class="nav-link" href="{% url 'userlogout' %}">logout</a>
 
               {% else %}
-              {% comment %} <a class="nav-link" href="{% url 'lexiconapp:userlogin' %}">login</a> {% endcomment %}
-              {% comment %} <a class="nav-link" href="{% url 'lexiconapp:register' %}">registraion</a> {% endcomment %}
+              <a class="nav-link" href="{% url 'userlogin' %}">login</a>
+              {% comment %} <a class="nav-link" href="{% url 'register' %}">registraion</a> {% endcomment %}
               {% endif %}
               {% comment %} <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a> {% endcomment %}
               
@@ -35,6 +35,17 @@
         </div>
       </nav>
       <div class="container-fulid">
+        <div>
+          {% if messages %}
+          <ul class="messages">
+            {% for message in messages %}
+          <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>
+            {{ message }}
+          </li>
+          {% endfor %}
+          </ul>
+          {% endif %}
+        </div>
         
         {% block body_block %}
 
