@@ -5,7 +5,7 @@ from django.http import HttpResponse,HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required,permission_required
 # Create your views here.
 
 def userlogin(request):
@@ -29,3 +29,9 @@ def userlogin(request):
         login_form = forms.UserLogin()
 
     return render(request,'lexiconapp/login.html',{'login_form':login_form})
+
+# @login_required
+def orderconf(request):
+    # need to take orderno from order model
+    orderno = '1000'
+    return HttpResponse("Your order is placed. order no {}".format(orderno))
