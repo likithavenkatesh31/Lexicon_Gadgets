@@ -33,6 +33,8 @@ def signup(request):
                    'registered': registered})
 
 
+
+from django.contrib.auth.decorators import login_required,permission_required
 # Create your views here.
 
 
@@ -62,4 +64,16 @@ def userlogin(request):
     else:
         login_form = forms.UserLogin()
 
-    return render(request, 'lexiconapp/login.html', {'login_form': login_form})
+    return render(request,'lexiconapp/login.html',{'login_form':login_form})
+
+# @login_required
+def orderconf(request):
+    # need to take orderno from order model
+    orderno = '1000'
+    return HttpResponse("Your order is placed. order no {}".format(orderno))
+
+# @login_required
+def userlogout(request):
+    logout(request)
+    messages.success(request,'logged out success')
+    return redirect('userlogin')
