@@ -7,7 +7,8 @@ from django.contrib import messages
 
 from django.contrib.auth.decorators import login_required
 # Create your views here.
-
+def index(request):
+    return render(request,'lexiconapp/base.html')
 def userlogin(request):
 
     if request.method == 'POST':

@@ -5,6 +5,7 @@ from django.conf.urls import url,include
 
 
 urlpatterns = [
-    path('index/', views.index, name='index'),
-    # url(r'^basic_app/',include('basic_app.urls'))
+    path('admin/', admin.site.urls),
+    path("",include('lexiconapp.urls')),
+    
 ]
