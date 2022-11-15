@@ -38,11 +38,6 @@ from django.contrib.auth.decorators import login_required,permission_required
 # Create your views here.
 
 
-# @login_required
-# def user_logout(request):
-#     logout(request)
-#     return render(request, 'lexiconapp/base.html')
-
 
 def userlogin(request):
 
@@ -72,8 +67,15 @@ def orderconf(request):
     orderno = '1000'
     return HttpResponse("Your order is placed. order no {}".format(orderno))
 
-# @login_required
+@login_required
 def userlogout(request):
     logout(request)
     messages.success(request,'logged out success')
     return redirect('userlogin')
+    
+def card(request):
+  item_list = Product.objects.all().values()
+  context = {'items': item_list,}
+  return render(request,'lexiconapp/card.html',context)
+    
+
