@@ -55,7 +55,6 @@ def userlogin(request):
             return render(request, 'lexiconapp/login.html', {'user': user})
         else:
             print("error")
-
     else:
         login_form = forms.UserLogin()
 
