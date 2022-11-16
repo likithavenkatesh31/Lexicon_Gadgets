@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from lexiconapp.models import UserForm,Product
+from lexiconapp.forms import UserForm
 from lexiconapp import forms
 # Create your views here.
 
@@ -16,20 +16,20 @@ def signup(request):
     registered = False
 
     if request.method == 'POST':
-        user_form = UserForm(data=request.POST)
+        form = UserForm(data=request.POST)
 
-        if user_form.is_valid():
-            user = user_form.save()
+        if form.is_valid():
+            user = form.save()
             user.set_password(user.password)
             user.save()
             registered = True
         else:
-            print(user_form.errors)
+            print(form.errors)
     else:
-        user_form = UserForm
+        form = UserForm
 
     return render(request, 'lexiconapp/signup.html',
-                  {'user_form': user_form,
+                  {'form': form,
                    'registered': registered})
 
 
@@ -55,6 +55,7 @@ def userlogin(request):
             return render(request, 'lexiconapp/login.html', {'user': user})
         else:
             print("error")
+
     else:
         login_form = forms.UserLogin()
 
