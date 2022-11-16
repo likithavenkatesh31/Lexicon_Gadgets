@@ -43,20 +43,6 @@ class Product(models.Model):
     
     
 
-
-           
-
-class UserForm(forms.ModelForm):
-    password = forms.CharField(widget=forms.PasswordInput())
-
-    class Meta():
-        model = User
-        fields = ('username', 'email', 'password')
-
-
-
-
-
 class Customer(models.Model):
 	user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
 	name = models.CharField(max_length=240)
