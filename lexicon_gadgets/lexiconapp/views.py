@@ -4,6 +4,8 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from lexiconapp.forms import UserForm
+from django.contrib.auth.decorators import login_required,permission_required
+from lexiconapp.models import Product,Contact
 from lexiconapp import forms
 # Create your views here.
 
@@ -14,7 +16,6 @@ def index(request):
 
 def signup(request):
     registered = False
-
     if request.method == 'POST':
         form = UserForm(data=request.POST)
 
@@ -34,8 +35,7 @@ def signup(request):
 
 
 
-from django.contrib.auth.decorators import login_required,permission_required
-# Create your views here.
+
 
 
 
@@ -67,6 +67,11 @@ def orderconf(request):
     orderno = '1000'
     return HttpResponse("Your order is placed. order no {}".format(orderno))
 
+# @login_required
+def orderbyuser(request):
+    
+    pass
+
 @login_required
 def userlogout(request):
     logout(request)
@@ -77,5 +82,27 @@ def card(request):
   item_list = Product.objects.all().values()
   context = {'items': item_list,}
   return render(request,'lexiconapp/card.html',context)
-    
+
+def contact(request):
+    if request.method == "POST":
+        contact = Contact()
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        phone = request.POST.get('phone')
+        message = request.POST.get('message')
+        if len(name)>4  and len(phone)>8 and len(phone)<11 and len(message)>2:
+            messages.error(request, "Please fill the form correctly")
+        else:
+            contact.name = name
+            contact.email = email
+            contact.phone = phone
+            contact.message = message
+            contact.save()
+        messages.success(request, "Your message has been successfully sent")
+    return render(request, 'lexiconapp/contact.html')
+
+
+        
+        
+
 
