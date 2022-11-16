@@ -56,6 +56,7 @@ class UserForm(forms.ModelForm):
 
 
 
+
 class Customer(models.Model):
 	user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
 	name = models.CharField(max_length=240)
@@ -91,3 +92,14 @@ class ShippingAddress(models.Model):
 
 	def __str__(self):
 		return self.address
+
+class Contact(models.Model):
+    name = models.CharField(max_length=30)
+    email = models.EmailField(max_length=30)
+    phone = models.CharField(max_length=10)
+    message = models.TextField()
+    timeStamp=models.DateTimeField(auto_now_add=True, blank=True)
+
+    def __str__(self):
+        # return self.name
+        return " Message from " + self.name + ' - ' + self.email
