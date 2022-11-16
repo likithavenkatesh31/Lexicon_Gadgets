@@ -52,3 +52,12 @@ class UserForm(forms.ModelForm):
     class Meta():
         model = User
         fields = ('username', 'email', 'password')
+class Contact(models.Model):
+    name = models.CharField(max_length=158)
+    email = models.EmailField()
+    phone_no=models.CharField(max_length=12)
+    message = models.TextField()
+
+    def __str__(self):
+        return self.name
+        

@@ -3,8 +3,9 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from lexiconapp.models import UserForm,Product
+from lexiconapp.models import UserForm,Product,Contact
 from lexiconapp import forms
+
 # Create your views here.
 
 
@@ -76,5 +77,20 @@ def card(request):
   item_list = Product.objects.all().values()
   context = {'items': item_list,}
   return render(request,'lexiconapp/card.html',context)
+
+def contact(request):
+    if request.method == "POST":
+        contact = Contact()
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        message = request.POST.get('message')
+
+        contact.name = name
+        contact.email = email
+        contact.message = message
+        contact.save()
+        
+    return render(request, 'lexiconapp/contact.html')
+
     
 
