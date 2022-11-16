@@ -66,6 +66,11 @@ def orderconf(request):
     orderno = '1000'
     return HttpResponse("Your order is placed. order no {}".format(orderno))
 
+# @login_required
+def orderbyuser(request):
+    
+    pass
+
 @login_required
 def userlogout(request):
     logout(request)
