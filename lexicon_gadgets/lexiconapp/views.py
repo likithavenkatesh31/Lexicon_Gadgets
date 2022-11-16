@@ -83,14 +83,21 @@ def contact(request):
         contact = Contact()
         name = request.POST.get('name')
         email = request.POST.get('email')
+        phone = request.POST.get('phone')
         message = request.POST.get('message')
-
-        contact.name = name
-        contact.email = email
-        contact.message = message
-        contact.save()
-        
+        if len(name)>4  and len(phone)>8 and len(phone)<11 and len(message)>2:
+            messages.error(request, "Please fill the form correctly")
+        else:
+            contact.name = name
+            contact.email = email
+            contact.phone = phone
+            contact.message = message
+            contact.save()
+        messages.success(request, "Your message has been successfully sent")
     return render(request, 'lexiconapp/contact.html')
 
-    
+
+        
+        
+
 
