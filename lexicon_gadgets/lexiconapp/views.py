@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from lexiconapp.models import UserForm,Product,Contact
 from lexiconapp import forms
+from .models import Product
 
 # Create your views here.
 
@@ -95,6 +96,12 @@ def contact(request):
             contact.save()
         messages.success(request, "Your message has been successfully sent")
     return render(request, 'lexiconapp/contact.html')
+def homepage(request):
+    products= Product.objects.all()
+    n= len(products)
+    nSlides= n//4 + ceil((n/4) + (n//4))
+    params={'no_of_slides':nSlides, 'range':range(1,nSlides), 'product': products}
+    return render(request,"lexiconapp/homepage.html", params )
 
 
         
