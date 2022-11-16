@@ -9,6 +9,31 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 def index(request):
     return render(request,'lexiconapp/base.html')
+def homepage(request):
+    	return render(request, "lexiconapp/base.html")
+
+def contact(request):
+	if request.method == 'POST':
+		form = ContactForm(request.POST)
+		if form.is_valid():
+			subject = "Website Inquiry" 
+			body = {
+			'first_name': form.cleaned_data['first_name'], 
+			'last_name': form.cleaned_data['last_name'], 
+			'email': form.cleaned_data['email_address'], 
+			'message':form.cleaned_data['message'], 
+			}
+			message = "\n".join(body.values())
+
+			try:
+				send_mail(subject, message, 'admin@example.com', ['admin@example.com']) 
+			except BadHeaderError:
+				return HttpResponse('Invalid header found.')
+			return redirect ("main:homepage")
+      
+	form = forms.ContactForm()
+	return render(request, "base/Contact.html", {'form':form})
+
 def userlogin(request):
 
     if request.method == 'POST':

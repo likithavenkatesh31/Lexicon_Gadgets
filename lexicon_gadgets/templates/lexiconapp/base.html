@@ -19,6 +19,8 @@
             <div class="navbar-nav">
               {% comment %} <a class="nav-link active" aria-current="page" href="{% url 'index' %}">index</a> {% endcomment %}
               <a class="nav-link" href="{% url 'admin:index' %}">Admin</a>
+              {% comment %} <a class="nav-link" href="{% url 'admin:index' %}">Contact Us</a> {% endcomment %}
+            
               
               
               {% if user.is_authenticated %}
@@ -29,6 +31,9 @@
               {% comment %} <a class="nav-link" href="{% url 'lexiconapp:register' %}">registraion</a> {% endcomment %}
               {% endif %}
               {% comment %} <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a> {% endcomment %}
+              <a class="nav-link" href="{% url 'admin:index' %}">Contact Us</a>
+              {% csrf_token %}
+              {{form.as_p}}
               
             </div>
           </div>

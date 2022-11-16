@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'lexiconapp',
+    
 ]
 
 # 1 pip install bcrypt
