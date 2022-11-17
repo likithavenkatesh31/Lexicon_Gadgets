@@ -1,10 +1,12 @@
-from django.shortcuts import render, HttpResponse, redirect
+from django.shortcuts import render, HttpResponse, redirect,HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from lexiconapp.models import UserForm,Product
 from lexiconapp import forms
+from django.template import loader
+from django.urls import reverse
 # Create your views here.
 
 
@@ -76,5 +78,56 @@ def card(request):
   item_list = Product.objects.all().values()
   context = {'items': item_list,}
   return render(request,'lexiconapp/card.html',context)
+
+def add(request):
+  template = loader.get_template('lexiconapp/add.html')
+  return HttpResponse(template.render({}, request))
+
+def addrecord(request):
+  a = request.POST.get('Title', False)
+  d = request.POST.get('Description', False)
+  e = request.POST.get('Price', False)
+  b = request.POST.get('Brand', False)
+  f = request.POST.get('Category', False)
+  c = request.POST.get('Images', False)
+  product = Product(title=a, description=d, price=e , brand=b, category=f, images=c )
+  product.save()
+  return HttpResponseRedirect(reverse('card'))
+
+
+def updaterecord(request, id):
+  a = request.POST.get('Title', False)
+  d = request.POST.get('Description', False)
+  e = request.POST.get('Price', False)
+  b = request.POST.get('Brand', False)
+  f = request.POST.get('Category', False)
+  c = request.POST.get('Images', False)
+  product = Product.objects.get(id=id)
+  product.title= a
+  product.description=d
+  product.price=e
+  product.brand=b
+  product.category=f
+  product.images=c
+  product.save()
+  return HttpResponseRedirect(reverse('card'))
+
+
+def delete(request, id):
+   product= Product.objects.get(id=id)
+   product.delete()
+   return HttpResponseRedirect(reverse('card'))
+
+def update(request, id):
+  selected_product = Product.objects.get(id=id)
+  template = loader.get_template('lexiconapp/update.html')
+  context = {
+    'item': selected_product,
+  }
+  return HttpResponse(template.render(context, request))
+
+
+
+
     
 
