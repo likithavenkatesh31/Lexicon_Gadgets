@@ -1,10 +1,11 @@
-from django.shortcuts import render, HttpResponse, redirect,HttpResponseRedirect
+from django.shortcuts import render, HttpResponse, redirect, HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from lexiconapp.models import Product, Contact
 from lexiconapp import forms
+from .models import ProfileUpdateForm
 from django.urls import reverse
 from django.template import loader
 # Create your views here.
@@ -16,13 +17,14 @@ def index(request):
 
 def signup(request):
     if request.method == 'POST':
-        username=request.POST.get('username')
+        username = request.POST.get('username')
         email = request.POST.get('email')
         pass1 = request.POST.get('pass1')
         pass2 = request.POST.get('pass2')
         if pass1 != pass2:
 
-            messages.error(request, "Password does not Match,Please Try Again!")
+            messages.error(
+                request, "Password does not Match,Please Try Again!")
             return redirect('/signup')
         try:
             if User.objects.get(username=username):
@@ -95,52 +97,59 @@ def card(request):
     context = {'items': item_list, }
     return render(request, 'lexiconapp/card.html', context)
 
+
 def add(request):
-  template = loader.get_template('lexiconapp/add.html')
-  return HttpResponse(template.render({}, request))
+    template = loader.get_template('lexiconapp/add.html')
+    return HttpResponse(template.render({}, request))
 
 
 def addrecord(request):
-  a = request.POST.get('Title', False)
-  d = request.POST.get('Description', False)
-  e = request.POST.get('Price', False)
-  b = request.POST.get('Brand', False)
-  f = request.POST.get('Category', False)
-  c = request.POST.get('Images', False)
-  product = Product(title=a, description=d, price=e , brand=b, category=f, images=c )
-  product.save()
-  return HttpResponseRedirect(reverse('card'))
+    a = request.POST.get('Title', False)
+    d = request.POST.get('Description', False)
+    e = request.POST.get('Price', False)
+    b = request.POST.get('Brand', False)
+    f = request.POST.get('Category', False)
+    c = request.POST.get('Images', False)
+    product = Product(title=a, description=d, price=e,
+                      brand=b, category=f, images=c)
+    product.save()
+    return HttpResponseRedirect(reverse('card'))
 
 # update record
+
+
 def updaterecord(request, id):
-  a = request.POST.get('Title', False)
-  d = request.POST.get('Description', False)
-  e = request.POST.get('Price', False)
-  b = request.POST.get('Brand', False)
-  f = request.POST.get('Category', False)
-  c = request.POST.get('Images', False)
-  product = Product.objects.get(id=id)
-  product.title= a
-  product.description=d
-  product.price=e
-  product.brand=b
-  product.category=f
-  product.images=c
-  product.save()
-  return HttpResponseRedirect(reverse('card'))
+    a = request.POST.get('Title', False)
+    d = request.POST.get('Description', False)
+    e = request.POST.get('Price', False)
+    b = request.POST.get('Brand', False)
+    f = request.POST.get('Category', False)
+    c = request.POST.get('Images', False)
+    product = Product.objects.get(id=id)
+    product.title = a
+    product.description = d
+    product.price = e
+    product.brand = b
+    product.category = f
+    product.images = c
+    product.save()
+    return HttpResponseRedirect(reverse('card'))
+
 
 def delete(request, id):
-   product= Product.objects.get(id=id)
-   product.delete()
-   return HttpResponseRedirect(reverse('card'))
+    product = Product.objects.get(id=id)
+    product.delete()
+    return HttpResponseRedirect(reverse('card'))
+
 
 def update(request, id):
-  selected_product = Product.objects.get(id=id)
-  template = loader.get_template('lexiconapp/update.html')
-  context = {
-    'item': selected_product,
-  }
-  return HttpResponse(template.render(context, request))
+    selected_product = Product.objects.get(id=id)
+    template = loader.get_template('lexiconapp/update.html')
+    context = {
+        'item': selected_product,
+    }
+    return HttpResponse(template.render(context, request))
+
 
 def contact(request):
     if request.method == "POST":
@@ -159,3 +168,24 @@ def contact(request):
         contact.save()
         messages.success(request, "Your message has been successfully sent")
     return render(request, 'lexiconapp/contact.html')
+
+
+@login_required(login_url='login')
+def profile(request):
+    if request.method == 'POST':
+        p_form = ProfileUpdateForm(request.POST,
+                                   request.FILES,
+                                   instance=request.user.profile)
+        if p_form.is_valid():
+            p_form.save()
+            messages.success(request, f'Your account has been updated!')
+            return redirect('profile')  # Redirect back to profile page
+
+    else:
+        p_form = ProfileUpdateForm(instance=request.user.profile)
+
+    context = {
+        'p_form': p_form
+    }
+
+    return render(request, 'lexiconapp/profile.html', context)
