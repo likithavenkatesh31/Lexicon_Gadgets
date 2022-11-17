@@ -28,3 +28,4 @@ urlpatterns = [
   
 
 ]
+handler404 = 'lexiconapp.views.error_404_view'

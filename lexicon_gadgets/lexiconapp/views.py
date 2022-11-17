@@ -2,13 +2,19 @@ from django.shortcuts import render, HttpResponse, redirect,HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.models import User
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from lexiconapp.models import *
 from lexiconapp import forms
 from django.urls import reverse
 from django.template import loader
 # Create your views here.
 
+def check_admin(user):
+    print(user.is_superuser)
+    return user.is_superuser
+
+def error_404_view(request, exception):
+    return redirect('userlogin')
 
 def index(request):
     return render(request, 'lexiconapp/base.html')
@@ -68,6 +74,7 @@ def userlogin(request):
     return render(request, 'lexiconapp/login.html', {'login_form': login_form})
 
 # @login_required
+@user_passes_test(check_admin)
 def orderconf(request):
     # need to take orderno from order model
     orderno = '1000'
@@ -91,11 +98,12 @@ def card(request):
     context = {'items': item_list, }
     return render(request, 'lexiconapp/card.html', context)
 
+@user_passes_test(check_admin)
 def add(request):
   template = loader.get_template('lexiconapp/add.html')
   return HttpResponse(template.render({}, request))
 
-
+@user_passes_test(check_admin)
 def addrecord(request):
   a = request.POST.get('Title', False)
   d = request.POST.get('Description', False)
@@ -108,6 +116,8 @@ def addrecord(request):
   return HttpResponseRedirect(reverse('card'))
 
 # update record
+
+@user_passes_test(check_admin)
 def updaterecord(request, id):
   a = request.POST.get('Title', False)
   d = request.POST.get('Description', False)
@@ -125,11 +135,13 @@ def updaterecord(request, id):
   product.save()
   return HttpResponseRedirect(reverse('card'))
 
+@user_passes_test(check_admin)
 def delete(request, id):
    product= Product.objects.get(id=id)
    product.delete()
    return HttpResponseRedirect(reverse('card'))
 
+@user_passes_test(check_admin)
 def update(request, id):
   selected_product = Product.objects.get(id=id)
   template = loader.get_template('lexiconapp/update.html')
