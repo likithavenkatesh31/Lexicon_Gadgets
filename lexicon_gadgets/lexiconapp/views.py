@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from lexiconapp.models import Product, Contact
+from lexiconapp.models import *
 from lexiconapp import forms
 from django.urls import reverse
 from django.template import loader
@@ -68,16 +68,12 @@ def userlogin(request):
     return render(request, 'lexiconapp/login.html', {'login_form': login_form})
 
 # @login_required
-
-
 def orderconf(request):
     # need to take orderno from order model
     orderno = '1000'
     return HttpResponse("Your order is placed. order no {}".format(orderno))
 
 # @login_required
-
-
 def orderbyuser(request):
 
     pass
