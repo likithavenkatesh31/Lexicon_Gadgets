@@ -1,11 +1,12 @@
-from django.shortcuts import render, HttpResponse, redirect
+from django.shortcuts import render, HttpResponse, redirect,HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.decorators import login_required
 from lexiconapp.models import Product, Contact
 from lexiconapp import forms
+from django.urls import reverse
+from django.template import loader
 # Create your views here.
 
 
@@ -42,28 +43,6 @@ def signup(request):
         # messages.info(request,"Signup Successful Please Login")
         return redirect('/login')
     return render(request, "lexiconapp/signup.html")
-
-
-# def signup(request):
-#     registered = False
-#     if request.method == 'POST':
-#         form = UserForm(data=request.POST)
-
-#         if form.is_valid():
-#             user = form.save()
-#             user.set_password(user.password)
-#             user.save()
-#             registered = True
-#             return redirect('/login')
-
-#         else:
-#             print(form.errors)
-
-#     else:
-#         form = UserForm
-#     return render(request, 'lexiconapp/signup.html',
-#                   {'form': form,
-#                    'registered': registered})
 
 
 def userlogin(request):
@@ -116,6 +95,52 @@ def card(request):
     context = {'items': item_list, }
     return render(request, 'lexiconapp/card.html', context)
 
+def add(request):
+  template = loader.get_template('lexiconapp/add.html')
+  return HttpResponse(template.render({}, request))
+
+
+def addrecord(request):
+  a = request.POST.get('Title', False)
+  d = request.POST.get('Description', False)
+  e = request.POST.get('Price', False)
+  b = request.POST.get('Brand', False)
+  f = request.POST.get('Category', False)
+  c = request.POST.get('Images', False)
+  product = Product(title=a, description=d, price=e , brand=b, category=f, images=c )
+  product.save()
+  return HttpResponseRedirect(reverse('card'))
+
+# update record
+def updaterecord(request, id):
+  a = request.POST.get('Title', False)
+  d = request.POST.get('Description', False)
+  e = request.POST.get('Price', False)
+  b = request.POST.get('Brand', False)
+  f = request.POST.get('Category', False)
+  c = request.POST.get('Images', False)
+  product = Product.objects.get(id=id)
+  product.title= a
+  product.description=d
+  product.price=e
+  product.brand=b
+  product.category=f
+  product.images=c
+  product.save()
+  return HttpResponseRedirect(reverse('card'))
+
+def delete(request, id):
+   product= Product.objects.get(id=id)
+   product.delete()
+   return HttpResponseRedirect(reverse('card'))
+
+def update(request, id):
+  selected_product = Product.objects.get(id=id)
+  template = loader.get_template('lexiconapp/update.html')
+  context = {
+    'item': selected_product,
+  }
+  return HttpResponse(template.render(context, request))
 
 def contact(request):
     if request.method == "POST":
@@ -124,13 +149,13 @@ def contact(request):
         email = request.POST.get('email')
         phone = request.POST.get('phone')
         message = request.POST.get('message')
-        if len(name) > 4 and len(phone) > 8 and len(phone) < 11 and len(message) > 2:
-            messages.error(request, "Please fill the form correctly")
-        else:
-            contact.name = name
-            contact.email = email
-            contact.phone = phone
-            contact.message = message
-            contact.save()
+        # if len(name) > 4 and len(phone) > 8 and len(message) > 2:
+        #     messages.error(request, "Please fill the form correctly")
+        # else:
+        contact.name = name
+        contact.email = email
+        contact.phone = phone
+        contact.message = message
+        contact.save()
         messages.success(request, "Your message has been successfully sent")
     return render(request, 'lexiconapp/contact.html')
