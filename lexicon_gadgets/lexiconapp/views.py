@@ -73,7 +73,7 @@ def userlogin(request):
 
     return render(request, 'lexiconapp/login.html', {'login_form': login_form})
 
-# @login_required
+@login_required
 def orderconf(userlogin):
     # need to take orderno from order model
     customer = Customer.objects.get(name=userlogin.user)
