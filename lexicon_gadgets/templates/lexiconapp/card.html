@@ -10,12 +10,12 @@
       <p class="card-item">{{item.price}}</p>
       <a href="#" class="btn btn-primary">ADD</a>
     </div>
-    <a href="lexiconapp/add/">Add product</a>
-    <a href="lexiconapp/delete/{{ item.id }}">delete product</a>
+    {% if user.is_superuser %}
     <a href="lexiconapp/update/{{ item.id }}">Edit product</a>
+    <a href="lexiconapp/delete/{{ item.id }}">delete product</a>
+    {% else %} {% endif %}
   </div>
   {% endfor %}
 </div>
-
-{% endblock %} 
+{% endblock %}
 <!-- test -->
