@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django import forms
-
+from django.contrib.auth.models import User
 # Create your models here.
 class Product(models.Model):
             title= models.CharField(max_length=255)
@@ -43,49 +43,12 @@ class Product(models.Model):
     
     
 
-class Customer(models.Model):
-	user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
-	name = models.CharField(max_length=240)
-	email = models.CharField(max_length=240,unique=True)
 
-	def __str__(self):
-		return self.name
+           
 
+class UserForm(forms.ModelForm):
+    password = forms.CharField(widget=forms.PasswordInput())
 
-class Order(models.Model):
-	customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True, blank=True)
-	date_ordered = models.DateTimeField(auto_now_add=True)
-	complete = models.BooleanField(default=False)
-	transaction_id = models.CharField(max_length=100, null=True)
-
-	def __str__(self):
-		return str(self.id)
-
-class OrderItem(models.Model):
-	product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
-	order = models.ForeignKey(Order, on_delete=models.SET_NULL, null=True)
-	quantity = models.IntegerField(default=0, null=True, blank=True)
-	date_added = models.DateTimeField(auto_now_add=True)
-
-class ShippingAddress(models.Model):
-	customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True)
-	order = models.ForeignKey(Order, on_delete=models.SET_NULL, null=True)
-	address = models.CharField(max_length=200, null=False)
-	city = models.CharField(max_length=200, null=False)
-	state = models.CharField(max_length=200, null=False)
-	zipcode = models.CharField(max_length=200, null=False)
-	date_added = models.DateTimeField(auto_now_add=True)
-
-	def __str__(self):
-		return self.address
-
-class Contact(models.Model):
-    name = models.CharField(max_length=30)
-    email = models.EmailField(max_length=30)
-    phone = models.CharField(max_length=10)
-    message = models.TextField()
-    timeStamp=models.DateTimeField(auto_now_add=True, blank=True)
-
-    def __str__(self):
-        # return self.name
-        return " Message from " + self.name + ' - ' + self.email
+    class Meta():
+        model = User
+        fields = ('username', 'email', 'password')
