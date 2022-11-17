@@ -101,7 +101,7 @@ def homepage(request):
     n= len(products)
     nSlides= n//4 + ceil((n/4) + (n//4))
     params={'no_of_slides':nSlides, 'range':range(1,nSlides), 'product': products}
-    return render(request,"lexiconapp/homepage.html", params )
+    return render(request,"lexiconapp/base.html", params )
 
 
         
