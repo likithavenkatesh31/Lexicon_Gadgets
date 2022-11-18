@@ -51,16 +51,20 @@
             <li class="nav-item">
               <a class="nav-link" href="{% url 'orderconf' %}">Orders</a>
             </li>
-            
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'userlogin' %}">LogIn</a>
-            </li>
+                        
+          {% if user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'userlogout' %}">Logout</a>
+          </li> 
            <li class="nav-item">
-              <a class="nav-link" href="{% url 'userlogout' %}">Logout</a>
-            </li> 
-            <li class="nav-item">
               <a class="nav-link" href="{% url 'profile' %}">profile</a>
             </li> 
+        {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'userlogin' %}">LogIn</a>
+          </li>
+          {% endif %} 
+           
             <li class="nav-item">
               <a class="nav-link" href="{% url 'signup' %}">SignUp</a>
             </li>
