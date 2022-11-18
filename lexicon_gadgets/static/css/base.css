@@ -30,3 +30,8 @@ body .carousel-indicators {
 .carousel-indicators .active {
     background-color: blue;
 }
+
+.image {
+    width: 15rem;
+    height: 25rem;
+}

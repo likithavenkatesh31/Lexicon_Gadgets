@@ -1,6 +1,5 @@
 {
-    "products": [
-        {
+    "products": [{
             "id": 1,
             "title": "iPhone 9",
             "description": "An apple mobile which is nothing like apple",
@@ -10,8 +9,8 @@
             "stock": 94,
             "brand": "Apple",
             "category": "smartphones",
-           "images":  "https://dummyjson.com/image/i/products/1/1.jpg"
-               
+            "images": "https://dummyjson.com/image/i/products/1/1.jpg"
+
         },
         {
             "id": 2,
@@ -24,7 +23,7 @@
             "brand": "Apple",
             "category": "smartphones",
             "images": "https://dummyjson.com/image/i/products/2/1.jpg"
-                  
+
         },
         {
             "id": 3,
@@ -37,7 +36,7 @@
             "brand": "Samsung",
             "category": "smartphones",
             "images": "https://dummyjson.com/image/i/products/3/1.jpg"
-            
+
         },
         {
             "id": 4,
@@ -50,7 +49,7 @@
             "brand": "OPPO",
             "category": "smartphones",
             "images": "https://dummyjson.com/image/i/products/4/1.jpg"
-                
+
         },
         {
             "id": 5,
@@ -63,7 +62,7 @@
             "brand": "Huawei",
             "category": "smartphones",
             "images": "https://dummyjson.com/image/i/products/5/1.jpg"
-                
+
         },
         {
             "id": 6,
@@ -75,8 +74,8 @@
             "stock": 83,
             "brand": "APPle",
             "category": "laptops",
-            "images":  "https://dummyjson.com/image/i/products/6/1.png"
-              
+            "images": "https://dummyjson.com/image/i/products/6/1.png"
+
         },
         {
             "id": 7,
@@ -89,8 +88,8 @@
             "brand": "Samsung",
             "category": "laptops",
             "images": "https://dummyjson.com/image/i/products/7/1.jpg"
-               
-            
+
+
         },
         {
             "id": 8,
@@ -102,8 +101,8 @@
             "stock": 68,
             "brand": "Microsoft Surface",
             "category": "laptops",
-            "images":  "https://dummyjson.com/image/i/products/8/1.jpg"
-             
+            "images": "https://dummyjson.com/image/i/products/8/1.jpg"
+
         },
         {
             "id": 9,
@@ -116,7 +115,7 @@
             "brand": "Infinix",
             "category": "laptops",
             "images": "https://dummyjson.com/image/i/products/9/1.jpg"
-              
+
         },
         {
             "id": 10,
@@ -129,7 +128,7 @@
             "brand": "HP Pavilion",
             "category": "laptops",
             "images": "https://dummyjson.com/image/i/products/10/1.jpg"
-             
+
         },
         {
             "id": 11,
@@ -142,7 +141,7 @@
             "brand": "Impression of Acqua Di Gio",
             "category": "fragrances",
             "images": "https://dummyjson.com/image/i/products/11/1.jpg"
-               
+
         },
         {
             "id": 12,
@@ -155,7 +154,7 @@
             "brand": "Royal_Mirage",
             "category": "fragrances",
             "images": "https://dummyjson.com/image/i/products/12/1.jpg"
-            
+
         },
         {
             "id": 13,
@@ -168,7 +167,7 @@
             "brand": "Fog Scent Xpressio",
             "category": "fragrances",
             "images": "https://dummyjson.com/image/i/products/13/1.jpg"
-    
+
         },
         {
             "id": 14,
@@ -180,8 +179,8 @@
             "stock": 114,
             "brand": "Al Munakh",
             "category": "fragrances",
-            "images":  "https://dummyjson.com/image/i/products/14/1.jpg"
-               
+            "images": "https://dummyjson.com/image/i/products/14/1.jpg"
+
         },
         {
             "id": 15,
@@ -193,8 +192,8 @@
             "stock": 105,
             "brand": "Lord - Al-Rehab",
             "category": "fragrances",
-            "images":"https://dummyjson.com/image/i/products/15/1.jpg"
-            
+            "images": "https://dummyjson.com/image/i/products/15/1.jpg"
+
         },
         {
             "id": 16,
@@ -207,8 +206,8 @@
             "brand": "L'Oreal Paris",
             "category": "skincare",
             "images": "https://dummyjson.com/image/i/products/16/1.png"
-               
-            
+
+
         },
         {
             "id": 17,
@@ -221,8 +220,8 @@
             "brand": "Hemani Tea",
             "category": "skincare",
             "images": "https://dummyjson.com/image/i/products/17/1.jpg"
-         
-            
+
+
         },
         {
             "id": 18,
@@ -236,8 +235,8 @@
             "category": "skincare",
             "thumbnail": "https://dummyjson.com/image/i/products/18/thumbnail.jpg",
             "images": "https://dummyjson.com/image/i/products/18/1.jpg"
-              
-            
+
+
         },
         {
             "id": 19,
@@ -250,7 +249,7 @@
             "brand": "ROREC White Rice",
             "category": "skincare",
             "images": "https://dummyjson.com/image/i/products/19/1.jpg"
-               
+
         },
         {
             "id": 20,
@@ -262,8 +261,8 @@
             "stock": 140,
             "brand": "Fair & Clear",
             "category": "skincare",
-            "images":  "https://dummyjson.com/image/i/products/20/1.jpg"
-            
+            "images": "https://dummyjson.com/image/i/products/20/1.jpg"
+
         },
         {
             "id": 21,
@@ -276,8 +275,8 @@
             "brand": "Saaf & Khaas",
             "category": "groceries",
             "images": "https://dummyjson.com/image/i/products/21/1.png"
-               
-            
+
+
         },
         {
             "id": 22,
@@ -290,7 +289,7 @@
             "brand": "Bake Parlor Big",
             "category": "groceries",
             "images": "https://dummyjson.com/image/i/products/22/1.jpg"
-               
+
         },
         {
             "id": 23,
@@ -303,7 +302,7 @@
             "brand": "Baking Food Items",
             "category": "groceries",
             "images": "https://dummyjson.com/image/i/products/23/1.jpg"
-               
+
         },
         {
             "id": 24,
@@ -315,10 +314,10 @@
             "stock": 113,
             "brand": "fauji",
             "category": "groceries",
-            
+
             "images": "https://dummyjson.com/image/i/products/24/1.jpg"
-               
-            
+
+
         },
         {
             "id": 25,
@@ -331,7 +330,7 @@
             "brand": "Dry Rose",
             "category": "groceries",
             "images": "https://dummyjson.com/image/i/products/25/1.png"
-            
+
         },
         {
             "id": 26,
@@ -344,8 +343,8 @@
             "brand": "Boho Decor",
             "category": "home-decoration",
             "images": "https://dummyjson.com/image/i/products/26/1.jpg"
-           
-            
+
+
         },
         {
             "id": 27,
@@ -371,8 +370,8 @@
             "brand": "LED Lights",
             "category": "home-decoration",
             "images": "https://dummyjson.com/image/i/products/28/1.jpg"
-            
-            
+
+
         },
         {
             "id": 29,
@@ -385,8 +384,8 @@
             "brand": "luxury palace",
             "category": "home-decoration",
             "images": "https://dummyjson.com/image/i/products/29/1.jpg"
-               
-            
+
+
         },
         {
             "id": 30,
@@ -398,9 +397,9 @@
             "stock": 54,
             "brand": "Golden",
             "category": "home-decoration",
-           "images": "https://dummyjson.com/image/i/products/30/1.jpg"
-                
-            
+            "images": "https://dummyjson.com/image/i/products/30/1.jpg"
+
+
         }
     ],
     "total": 100,
