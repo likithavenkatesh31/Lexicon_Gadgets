@@ -18,8 +18,8 @@ urlpatterns = [
     path("signup", views.signup, name='signup'),
     path('orders/', views.orderbyuser, name='orders'),
     path('contact/', views.contact, name='contact'),
-    # path('profile/', views.profile, name='profile'),
-    path('profile/', views.profile, name='updateprofile'),
+    path('profile/', views.profile, name='profile'),
+    path('updateprofile/', views.profile, name='updateprofile'),
 ]
 
 if settings.DEBUG:

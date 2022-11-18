@@ -111,4 +111,4 @@ class Profile(models.Model):
 class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['image']
+        fields = ['email','address','phone','image']
