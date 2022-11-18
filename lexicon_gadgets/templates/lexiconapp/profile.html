@@ -9,7 +9,7 @@
             src="{{ user.profile.image.url }}"
               alt="avatar"
               class="rounded-circle img-fluid"
-              style="width: 12rem; height: 12rem"
+              style="width: 150px"
             />
             <h5 class="my-3"> {{ user.username }}</h5>
           
@@ -24,7 +24,7 @@
                 <p class="mb-0">Full Name</p>
               </div>
               <div class="col-sm-9">
-                <p class="text-muted mb-0">{{ user.username }}</p>
+                <p class="text-muted mb-0">{{ user.profile.name }}</p>
               </div>
             </div>
             <hr />
@@ -33,7 +33,7 @@
                 <p class="mb-0">Email</p>
               </div>
               <div class="col-sm-9">
-                <p class="text-muted mb-0">{{ user.profile.email }}</p>
+                <p class="text-muted mb-0">{{ user.email }}</p>
               </div>
             </div>
             <hr />
@@ -55,6 +55,7 @@
               </div>
             </div>
             <br>
+            <a  href="{% url 'updateprofile' %}" class="btn btn-outline-info">Update</a>
           </div>
         </div>
         </div>

@@ -1,4 +1,5 @@
-{% extends 'lexiconapp/base.html' %} {% block body_block %}
+{% extends 'lexiconapp/base.html' %}  {% load crispy_forms_tags %} {% block body_block %}
+{% load static %}
 <section >
   <div class="container py-5">
     <div class="row">
@@ -6,24 +7,32 @@
         <div class="card mb-4">
           <div class="card-body text-center">
             <img
-              src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
+            src="{{ user.profile.image.url }}"
               {% comment %} src="{{request.user.customer.avatar.url}}" {% endcomment %}
               alt="avatar"
               class="rounded-circle img-fluid"
               style="width: 150px"
             />
-            <h5 class="my-3">John Smith</h5>
-            <p class="text-muted mb-1">Full Stack Developer</p>
-            <p class="text-muted mb-4">Bay Area, San Francisco, CA</p>
+            <h5 class="my-3">{{user.profile.name}}</h5>
           </div>
         </div>
       </div>
       <div class="col-lg-8">
         <div class="card mb-4">
           <div class="card-body">
-            <form methode="post" action="" enctype="multipart/form-data">
+            <form method="POST" enctype="multipart/form-data">
               {% csrf_token %}
-             {{ form.as_p}}
+              <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Profile Info</legend>
+                {{ u_form|crispy }}
+                <!-- User form -->
+                {{ p_form|crispy }}
+                <!-- Profile form -->
+              </fieldset>
+              <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">Update</button>
+                 <a  href="{% url 'profile' %}" class="btn btn-outline-info">Cancel</a>
+              </div>
             </form>
           </div>
         </div>
