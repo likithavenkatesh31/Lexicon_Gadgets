@@ -10,7 +10,7 @@ from django.template import loader
 # Create your views here.
 
 def check_admin(user):
-    print(user.is_superuser)
+    # print(user.is_superuser)
     return user.is_superuser
 
 def error_404_view(request, exception):
@@ -45,6 +45,8 @@ def signup(request):
         # checks for error inputs
         user = User.objects.create_user(username, email, pass1)
         user.save()
+        customer = Customer(user=user,name=username,email=email)
+        customer.save()
         messages.info(request, 'Thanks For Signing Up')
         # messages.info(request,"Signup Successful Please Login")
         return redirect('/login')
