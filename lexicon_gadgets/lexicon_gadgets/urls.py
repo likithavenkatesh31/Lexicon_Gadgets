@@ -25,3 +25,5 @@ urlpatterns = [
     path("", include('lexiconapp.urls')),
     path('login', views.userlogin, name='userlogin'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+handler404 = 'lexiconapp.views.error_404_view'
