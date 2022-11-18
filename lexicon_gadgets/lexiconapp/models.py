@@ -99,7 +99,6 @@ class Contact(models.Model):
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=30)
-    email = models.EmailField(max_length=30)
     address = models.CharField(max_length=120)
     phone = models.CharField(max_length=10)
     image = models.ImageField(default='default.jpg', upload_to='profile_pics')
@@ -111,11 +110,10 @@ class Profile(models.Model):
 class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['name','email', 'phone', 'address','image']
-
+        fields = ['name', 'phone', 'address','image']
 class UserUpdateForm(forms.ModelForm):
    
     class Meta:
-        model = Profile
-        fields = ['name','email', 'phone', 'address']
+        model = User
+        fields = ['email']
 

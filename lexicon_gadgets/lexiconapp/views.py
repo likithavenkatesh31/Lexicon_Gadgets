@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 from lexiconapp.models import Product, Contact
 from lexiconapp import forms
 from django.contrib.auth.forms import UserChangeForm
-from .models import ProfileUpdateForm
+from .models import ProfileUpdateForm,UserUpdateForm
 from django.urls import reverse
 from django.template import loader
 # Create your views here.
@@ -195,18 +195,25 @@ def profile(request):
 @login_required(login_url='login')
 def updateprofile(request):
     if request.method == 'POST':
+        u_form = UserUpdateForm(request.POST, instance=request.user)
         p_form = ProfileUpdateForm(request.POST,
                                    request.FILES,
                                    instance=request.user.profile)
-        if p_form.is_valid():
+        if u_form.is_valid() and p_form.is_valid():
+            u_form.save()
             p_form.save()
             messages.success(request, f'Your account has been updated!')
-            return redirect('profile')  # Redirect back to profile page
+            return redirect('profile') # Redirect back to profile page
+
     else:
+        u_form = UserUpdateForm(instance=request.user)
         p_form = ProfileUpdateForm(instance=request.user.profile)
+
     context = {
+        'u_form': u_form,
         'p_form': p_form
     }
+
 
     return render(request, 'lexiconapp/updateprofile.html', context)
     # Redirect back to profile page
