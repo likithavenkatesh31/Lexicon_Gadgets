@@ -76,17 +76,28 @@ def userlogin(request):
     return render(request, 'lexiconapp/login.html', {'login_form': login_form})
 
 @login_required
-def orderconf(userlogin):
+def orderconf(request):
     # need to take orderno from order model
-    customer = Customer.objects.get(name=userlogin.user)
+    customer = Customer.objects.get(name=request.user)
     orderno = Order.objects.get(customer=customer)
     t_id=orderno.transaction_id
     return HttpResponse("Your order is placed. order no {}".format(t_id))
 
-# @login_required
+@login_required
 def orderbyuser(request):
+    customer = Customer.objects.get(name=request.user)
+    orders = Order.objects.filter(customer=customer)
+    orderitems = OrderItem.objects.filter(order__in=orders)
+    shippingaddress = ShippingAddress.objects.filter(order__in=orders)
 
-    pass
+    
+    context = {
+    'orders': orders,
+    'orderitems' : orderitems,
+    'shippingaddress' : shippingaddress,
+    }    
+    return render(request, 'lexiconapp/orders.html', context)
+
 
 
 @login_required
