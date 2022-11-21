@@ -112,12 +112,12 @@ def card(request):
     context = {'items': item_list, }
     return render(request, 'lexiconapp/card.html', context)
 
-@user_passes_test(check_admin)
+@user_passes_test(check_admin,login_url='/login')
 def add(request):
   template = loader.get_template('lexiconapp/add.html')
   return HttpResponse(template.render({}, request))
 
-@user_passes_test(check_admin)
+@user_passes_test(check_admin,login_url='/login')
 def addrecord(request):
   a = request.POST.get('Title', False)
   d = request.POST.get('Description', False)
@@ -131,7 +131,7 @@ def addrecord(request):
 
 # update record
 
-@user_passes_test(check_admin)
+@user_passes_test(check_admin,login_url='/login')
 def updaterecord(request, id):
   a = request.POST.get('Title', False)
   d = request.POST.get('Description', False)
@@ -149,13 +149,13 @@ def updaterecord(request, id):
   product.save()
   return HttpResponseRedirect(reverse('card'))
 
-@user_passes_test(check_admin)
+@user_passes_test(check_admin,login_url='/login')
 def delete(request, id):
    product= Product.objects.get(id=id)
    product.delete()
    return HttpResponseRedirect(reverse('card'))
 
-@user_passes_test(check_admin)
+@user_passes_test(check_admin,login_url='/login')
 def update(request, id):
   selected_product = Product.objects.get(id=id)
   template = loader.get_template('lexiconapp/update.html')
