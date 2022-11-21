@@ -4,15 +4,24 @@ from django import forms
 
   
 # Create your models here.
+class Category(models.Model):
+        title = models.CharField(max_length=150)
+
+        class Meta:
+            verbose_name_plural ='Categories'
+        def __str__(self):
+        	return self.title
 class Product(models.Model):
-            title= models.CharField(max_length=255)
-            description= models.CharField(max_length=255)
-            price=  models.FloatField()
-            brand= models.CharField(max_length=255)
-            category= models.CharField(max_length=255)
-            images= models.URLField(max_length=255)
-            def __str__(self):
-                    return self.title
+    # category= models.ForeignKey(Category, related_name='Products',on_delete=models.CASCADE)
+    title= models.CharField(max_length=255)
+    description= models.CharField(max_length=255)
+    price=  models.FloatField()
+    brand= models.CharField(max_length=255)
+    # category= models.CharField(max_length=255)
+    images= models.URLField(max_length=255)
+    def __str__(self):
+        return self.title
+
             
             
             
@@ -90,7 +99,18 @@ class Contact(models.Model):
     def __str__(self):
         # return self.name
         return " Message from " + self.name + ' - ' + self.email
+"""""
+class Category(models.Model):
+    parent = models.ForeignKey('self', related_name='children', on_delete=models.CASCADE, blank = 
+    True, null=True)
+    title = models.CharField(max_length=100) 
+    slug = AutoSlugField(populate_from='title', unique=True, null=False, editable=False)
+    created_at = models.DateTimeField(auto_now_add=True)  
+    def __str__(self):
+        return self.title
+class Meta:
+	unique_together = ('slug', 'parent',)    
+	verbose_name_plural = "categories"    
+	"""
 
-    
 
-  

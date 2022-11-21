@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from lexiconapp.models import Product, Contact
+from lexiconapp.models import Product, Contact,Category
 from lexiconapp import forms
 from .models import Product
 from django.template import loader
@@ -106,7 +106,7 @@ def addrecord(request):
   d = request.POST.get('Description', False)
   e = request.POST.get('Price', False)
   b = request.POST.get('Brand', False)
-  f = request.POST.get('Category', False)
+  f = request.POST.get('Category_detail', False)
   c = request.POST.get('Images', False)
   product = Product(title=a, description=d, price=e , brand=b, category=f, images=c )
   product.save()
@@ -164,6 +164,19 @@ def homepage(request):
     item_list = Product.objects.all().values()
     context = {'items': item_list, }
     return render(request,"lexiconapp/base.html", context )
+def category_detail(request):
+    category  = get_object_or_404(Category)
+    Product = category.product.all()
+    context = {
+        'category': category,
+        'Product': Product
+    }
+    return render(request, 'category_detail.html', context)
+def menu_categories(request):
+    categories= Category.objects.all() 
+    return {'categories': categories}
+
+
 
 
         
