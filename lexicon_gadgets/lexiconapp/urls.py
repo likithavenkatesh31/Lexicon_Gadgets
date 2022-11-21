@@ -6,7 +6,7 @@ from django.urls import path
 
 urlpatterns = [
     path('', views.index, name='base'),
-    path('orderconf/', views.orderconf, name='orderconf'),
+    path('orderall/', views.orderall, name='orderall'),
     path('logout/', views.userlogout, name='userlogout'),
     path('card', views.card, name='card'),
     path('lexiconapp/add/', views.add, name='add'),
